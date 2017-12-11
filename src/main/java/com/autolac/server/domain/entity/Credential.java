@@ -30,7 +30,7 @@ public class Credential implements Serializable {
   @Column(name = "token")
   private String token;
 
-  @Column(name = "token_date")
+  @Column(name = "token_date", columnDefinition = "DATETIME")
   @Temporal(TemporalType.TIMESTAMP)
   private Date tokenDate;
 
