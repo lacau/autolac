@@ -1,4 +1,4 @@
-package com.autolac;
+package com.autolac.server;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
