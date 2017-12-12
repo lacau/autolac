@@ -27,7 +27,6 @@ public class Period implements Serializable {
 
   @Column(name = "end", columnDefinition = "DATETIME")
   @Temporal(TemporalType.TIMESTAMP)
-
   private Date end;
 
   @Column(name = "full_time", columnDefinition = "TINYINT(1)")
