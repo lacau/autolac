@@ -27,7 +27,7 @@ public class Hashtag implements Serializable {
   @Column(name = "count")
   private Integer count;
 
-  @Column(name = "end", columnDefinition = "DATETIME")
+  @Column(name = "last_update", columnDefinition = "DATETIME")
   @Temporal(TemporalType.TIMESTAMP)
   private Date lastUpdate;
 
