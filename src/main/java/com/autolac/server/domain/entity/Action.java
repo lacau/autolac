@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.io.Serializable;
 
 /**
@@ -17,6 +19,10 @@ public class Action implements Serializable {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
   private Long id;
+
+  @ManyToOne
+  @JoinColumn(name = "fk_period")
+  private Period period;
 
   @Column(name = "name")
   private String name;
@@ -39,6 +45,14 @@ public class Action implements Serializable {
 
   public void setId(Long id) {
     this.id = id;
+  }
+
+  public Period getPeriod() {
+    return period;
+  }
+
+  public void setPeriod(Period period) {
+    this.period = period;
   }
 
   public String getName() {
@@ -94,6 +108,8 @@ public class Action implements Serializable {
       return false;
     if (id != null ? !id.equals(action.id) : action.id != null)
       return false;
+    if (period != null ? !period.equals(action.period) : action.period != null)
+      return false;
     if (name != null ? !name.equals(action.name) : action.name != null)
       return false;
     if (type != action.type)
@@ -106,6 +122,7 @@ public class Action implements Serializable {
   @Override
   public int hashCode() {
     int result = id != null ? id.hashCode() : 0;
+    result = 31 * result + (period != null ? period.hashCode() : 0);
     result = 31 * result + (name != null ? name.hashCode() : 0);
     result = 31 * result + (type != null ? type.hashCode() : 0);
     result = 31 * result + (interval != null ? interval.hashCode() : 0);
@@ -118,6 +135,7 @@ public class Action implements Serializable {
   public String toString() {
     return "Action{" +
         "id=" + id +
+        ", period=" + period +
         ", name='" + name + '\'' +
         ", type=" + type +
         ", interval=" + interval +
