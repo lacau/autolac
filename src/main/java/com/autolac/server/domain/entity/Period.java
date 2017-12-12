@@ -92,7 +92,8 @@ public class Period implements Serializable {
     return result;
   }
 
-  @Override public String toString() {
+  @Override
+  public String toString() {
     return "Period{" +
         "id=" + id +
         ", begin=" + begin +
