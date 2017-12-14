@@ -1,6 +1,5 @@
-package com.autolac.server.security;
+package com.autolac.server.exception;
 
-import com.autolac.server.HttpException;
 import org.springframework.http.HttpStatus;
 
 /**

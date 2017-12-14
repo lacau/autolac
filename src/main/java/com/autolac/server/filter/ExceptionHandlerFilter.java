@@ -1,6 +1,6 @@
 package com.autolac.server.filter;
 
-import com.autolac.server.HttpException;
+import com.autolac.server.exception.HttpException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;

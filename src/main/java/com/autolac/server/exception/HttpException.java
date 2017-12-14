@@ -1,4 +1,4 @@
-package com.autolac.server;
+package com.autolac.server.exception;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.http.HttpStatus;
