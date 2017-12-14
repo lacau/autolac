@@ -6,7 +6,7 @@ import com.autolac.server.json.CredentialOut;
 /**
  * Created by lacau on 14/12/17.
  */
-public interface AccountService {
+public interface CredentialService {
 
-  CredentialOut createAccount(final CredentialIn credentialIn);
+  CredentialOut createCredential(final CredentialIn credentialIn);
 }

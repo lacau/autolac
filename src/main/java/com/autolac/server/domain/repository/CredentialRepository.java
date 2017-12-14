@@ -12,5 +12,5 @@ public interface CredentialRepository extends CrudRepository<Credential, Long> {
 
   @Query("SELECT count(credential.id) FROM Credential credential "
       + "WHERE credential.login = :login")
-  Long findCountByLogin(@Param("login") final String login);
+  Long countByLogin(@Param("login") final String login);
 }

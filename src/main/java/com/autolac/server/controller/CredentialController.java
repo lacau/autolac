@@ -2,7 +2,7 @@ package com.autolac.server.controller;
 
 import com.autolac.server.json.CredentialIn;
 import com.autolac.server.json.CredentialOut;
-import com.autolac.server.service.AccountService;
+import com.autolac.server.service.CredentialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,14 +17,14 @@ import javax.validation.constraints.NotNull;
  * Created by lacau on 14/12/17.
  */
 @RestController
-@RequestMapping("account")
-public class AccountResource {
+@RequestMapping("credential")
+public class CredentialController {
 
   @Autowired
-  private AccountService accountService;
+  private CredentialService credentialService;
 
   @RequestMapping(value = "/create", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-  public CredentialOut createAccount(@RequestBody @Valid @NotNull CredentialIn credentialIn) {
-    return accountService.createAccount(credentialIn);
+  public CredentialOut createCredential(@RequestBody @Valid @NotNull CredentialIn credentialIn) {
+    return credentialService.createCredential(credentialIn);
   }
 }

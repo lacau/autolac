@@ -1,7 +1,7 @@
 package com.autolac.server.filter;
 
-import com.autolac.server.security.CredentialValidator;
 import com.autolac.server.exception.InvalidCredentialException;
+import com.autolac.server.security.CredentialValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
@@ -22,19 +22,20 @@ import java.util.Collection;
 @Component
 public class LoginFilter extends OncePerRequestFilter {
 
-  private Collection<String> excludeUrlPatterns;
-
-  private PathMatcher pathMatcher = new AntPathMatcher();
-
   @Autowired
   private CredentialValidator credentialValidator;
+
+  private Collection<String> excludeUrlPatterns;
+
+  private PathMatcher pathMatcher;
 
   @Override
   protected void initFilterBean() throws ServletException {
     super.initFilterBean();
+    pathMatcher = new AntPathMatcher();
     excludeUrlPatterns = new ArrayList<>();
     excludeUrlPatterns.add("/login/*");
-    excludeUrlPatterns.add("/account/*");
+    excludeUrlPatterns.add("/credential/*");
   }
 
   @Override

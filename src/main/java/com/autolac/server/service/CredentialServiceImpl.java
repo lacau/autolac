@@ -18,7 +18,7 @@ import java.util.Calendar;
  * Created by lacau on 14/12/17.
  */
 @Service
-public class AccountServiceImpl implements AccountService {
+public class CredentialServiceImpl implements CredentialService {
 
   @Autowired
   private CredentialRepository credentialRepository;
@@ -27,8 +27,8 @@ public class AccountServiceImpl implements AccountService {
   private CredentialConverter credentialConverter;
 
   @Transactional(propagation = Propagation.REQUIRED)
-  public CredentialOut createAccount(final CredentialIn credentialIn) {
-    final Long countByLogin = credentialRepository.findCountByLogin(credentialIn.getLogin());
+  public CredentialOut createCredential(final CredentialIn credentialIn) {
+    final Long countByLogin = credentialRepository.countByLogin(credentialIn.getLogin());
     if (countByLogin != 0)
       throw new ResourceAlreadyExistsException();
 
