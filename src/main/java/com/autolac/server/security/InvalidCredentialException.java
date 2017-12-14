@@ -1,11 +1,20 @@
 package com.autolac.server.security;
 
+import com.autolac.server.HttpException;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 /**
  * Created by lacau on 13/12/17.
  */
-@ResponseStatus(value = HttpStatus.UNAUTHORIZED)
-public class InvalidCredentialException extends RuntimeException {
+public class InvalidCredentialException extends HttpException {
+
+  @Override
+  public HttpStatus getHttpStatus() {
+    return HttpStatus.UNAUTHORIZED;
+  }
+
+  @Override
+  public String getReason() {
+    return "Invalid credential";
+  }
 }

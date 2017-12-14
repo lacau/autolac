@@ -1,5 +1,7 @@
-package com.autolac.server.security;
+package com.autolac.server.filter;
 
+import com.autolac.server.security.CredentialValidator;
+import com.autolac.server.security.InvalidCredentialException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
