@@ -1,5 +1,6 @@
 package com.autolac.server.exception;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.http.HttpStatus;
 
@@ -8,11 +9,29 @@ import org.springframework.http.HttpStatus;
  */
 public abstract class HttpException extends RuntimeException {
 
-  @JsonView(Show.class)
-  public abstract HttpStatus getHttpStatus();
+  private HttpStatus httpStatus;
+
+  private String reason;
+
+  public HttpException(HttpStatus httpStatus, String reason) {
+    this.httpStatus = httpStatus;
+    this.reason = reason;
+  }
+
+  public HttpStatus getHttpStatus() {
+    return httpStatus;
+  }
 
   @JsonView(Show.class)
-  public abstract String getReason();
+  @JsonProperty("httpStatus")
+  public int getHttpStatusCode() {
+    return httpStatus.value();
+  }
+
+  @JsonView(Show.class)
+  public String getReason() {
+    return reason;
+  }
 
   public static final class Show {
   }

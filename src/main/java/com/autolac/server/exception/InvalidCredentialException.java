@@ -7,13 +7,7 @@ import org.springframework.http.HttpStatus;
  */
 public class InvalidCredentialException extends HttpException {
 
-  @Override
-  public HttpStatus getHttpStatus() {
-    return HttpStatus.UNAUTHORIZED;
-  }
-
-  @Override
-  public String getReason() {
-    return "Invalid credential";
+  public InvalidCredentialException() {
+    super(HttpStatus.UNAUTHORIZED, "Invalid credential");
   }
 }
