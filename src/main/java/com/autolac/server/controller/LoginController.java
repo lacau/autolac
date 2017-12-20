@@ -34,4 +34,15 @@ public class LoginController {
 
     return ResponseEntity.ok().build();
   }
+
+  @RequestMapping(value = "/logout", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity logout(@RequestHeader("auth_token") String authToken, @RequestHeader("auth_id") Long authId) {
+    final Credential credential = new Credential();
+    credential.setId(authId);
+    credential.setToken(authToken);
+
+    loginService.doLogout(credential);
+
+    return ResponseEntity.ok().build();
+  }
 }

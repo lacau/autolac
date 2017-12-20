@@ -34,4 +34,12 @@ public class LoginServiceImpl implements LoginService {
 
     cacheManager.store(credentialCacheConverter.convert(credentialDB));
   }
+
+  public void doLogout(final Credential credential) {
+    final Credential credentialDB = credentialRepository.findByIdAndToken(credential.getId(), credential.getToken());
+    if (credentialDB == null)
+      throw new InvalidCredentialException();
+
+    cacheManager.remove(credential.getId());
+  }
 }

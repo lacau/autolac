@@ -8,4 +8,6 @@ import com.autolac.server.domain.entity.Credential;
 public interface LoginService {
 
   void doLoginByToken(final Credential credential);
+
+  void doLogout(final Credential credential);
 }
