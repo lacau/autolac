@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import java.io.Serializable;
@@ -21,6 +23,10 @@ public class Period implements Serializable {
   @Column(name = "id")
   private Long id;
 
+  @ManyToOne
+  @JoinColumn(name = "fk_credential")
+  private Credential credential;
+
   @Column(name = "begin", columnDefinition = "DATETIME")
   @Temporal(TemporalType.TIMESTAMP)
   private Date begin;
@@ -32,12 +38,23 @@ public class Period implements Serializable {
   @Column(name = "full_time", columnDefinition = "TINYINT(1)")
   private boolean fullTime;
 
+  @Column(name = "cycle")
+  private Integer cycle;
+
   public Long getId() {
     return id;
   }
 
   public void setId(Long id) {
     this.id = id;
+  }
+
+  public Credential getCredential() {
+    return credential;
+  }
+
+  public void setCredential(Credential credential) {
+    this.credential = credential;
   }
 
   public Date getBegin() {
@@ -64,6 +81,14 @@ public class Period implements Serializable {
     this.fullTime = fullTime;
   }
 
+  public Integer getCycle() {
+    return cycle;
+  }
+
+  public void setCycle(Integer cycle) {
+    this.cycle = cycle;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o)
@@ -77,27 +102,34 @@ public class Period implements Serializable {
       return false;
     if (id != null ? !id.equals(period.id) : period.id != null)
       return false;
+    if (credential != null ? !credential.equals(period.credential) : period.credential != null)
+      return false;
     if (begin != null ? !begin.equals(period.begin) : period.begin != null)
       return false;
-    return end != null ? end.equals(period.end) : period.end == null;
+    if (end != null ? !end.equals(period.end) : period.end != null)
+      return false;
+    return cycle != null ? cycle.equals(period.cycle) : period.cycle == null;
   }
 
   @Override
   public int hashCode() {
     int result = id != null ? id.hashCode() : 0;
+    result = 31 * result + (credential != null ? credential.hashCode() : 0);
     result = 31 * result + (begin != null ? begin.hashCode() : 0);
     result = 31 * result + (end != null ? end.hashCode() : 0);
     result = 31 * result + (fullTime ? 1 : 0);
+    result = 31 * result + (cycle != null ? cycle.hashCode() : 0);
     return result;
   }
 
-  @Override
-  public String toString() {
+  @Override public String toString() {
     return "Period{" +
         "id=" + id +
+        ", credential=" + credential +
         ", begin=" + begin +
         ", end=" + end +
         ", fullTime=" + fullTime +
+        ", cycle=" + cycle +
         '}';
   }
 }
