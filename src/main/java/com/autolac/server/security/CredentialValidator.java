@@ -2,8 +2,12 @@ package com.autolac.server.security;
 
 import com.autolac.server.cache.CacheManager;
 import com.autolac.server.cache.CredentialCache;
+import com.autolac.server.util.TimeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by lacau on 13/12/17.
@@ -11,8 +15,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class CredentialValidator {
 
-  // mili * sec * hour * day
-  private static final long TOKEN_LIVE = 1000 * 3600 * 24 * 7;
+  @Value("{token.expiration.time.days:7}")
+  private long tokenExpirationTime;
 
   @Autowired
   private CacheManager cacheManager;
@@ -32,7 +36,8 @@ public class CredentialValidator {
     return isValidToken(credentialCache.tokenDate);
   }
 
-  public boolean isValidToken(Long tokenDate) {
-    return System.currentTimeMillis() < tokenDate + TOKEN_LIVE;
+  public boolean isValidToken(final Long tokenDate) {
+    return System.currentTimeMillis() < tokenDate + TimeUtils
+        .getMilisecondsByTimeUnit(tokenExpirationTime, TimeUnit.DAYS);
   }
 }
