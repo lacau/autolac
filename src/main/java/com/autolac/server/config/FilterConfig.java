@@ -22,7 +22,7 @@ public class FilterConfig {
 
   @Bean
   public FilterRegistrationBean exceptionHandlerFilterRegister() {
-    FilterRegistrationBean registration = new FilterRegistrationBean();
+    final FilterRegistrationBean registration = new FilterRegistrationBean();
     registration.setFilter(exceptionHandlerFilter);
     registration.addUrlPatterns("/*");
     registration.setName(exceptionHandlerFilter.getClass().getSimpleName());
@@ -32,7 +32,7 @@ public class FilterConfig {
 
   @Bean
   public FilterRegistrationBean loginFilterRegister() {
-    FilterRegistrationBean registration = new FilterRegistrationBean();
+    final FilterRegistrationBean registration = new FilterRegistrationBean();
     registration.setFilter(loginFilter);
     registration.addUrlPatterns("/*");
     registration.setName(loginFilter.getClass().getSimpleName());

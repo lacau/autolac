@@ -10,8 +10,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class CredentialConverter {
 
-  public CredentialOut convert(Credential credential) {
-    CredentialOut credentialOut = new CredentialOut();
+  public CredentialOut convert(final Credential credential) {
+    final CredentialOut credentialOut = new CredentialOut();
     credentialOut.setToken(credential.getToken());
     credentialOut.setId(credential.getId());
     return credentialOut;

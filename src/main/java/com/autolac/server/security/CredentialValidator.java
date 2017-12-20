@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class CredentialValidator {
 
-  @Value("{token.expiration.time.days:7}")
+  @Value("${token.expiration.time.days:7}")
   private long tokenExpirationTime;
 
   @Autowired
