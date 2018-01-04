@@ -26,7 +26,7 @@ public class InstagramLoginRequest {
   private String password;
 
   @JsonProperty("login_attempt_account")
-  private int loginAttemptAccount = 0;
+  private int loginAttemptAccount;
 
   public String getUserName() {
     return userName;
